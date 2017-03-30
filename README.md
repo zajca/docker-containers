@@ -1,4 +1,6 @@
-# Elasticsearch Docker container with plugin
+# Docker containers for development
 
-Elasticsearch with the ICU plugin and czech hunspell dictionary
+#PHP
+#PHP for export
+#elasticsearch
 
