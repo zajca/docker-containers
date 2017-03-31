@@ -3,17 +3,22 @@ FROM php:7.1.2-fpm
 MAINTAINER Martin Zajic <zajca@zajca.cz>
 
 RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    curl \
-    libcurl4-openssl-dev \
-    zlib1g-dev \
-    libxml2-dev \
-    libicu-dev &&\
+        git \
+        unzip \
+        curl \
+        libcurl4-openssl-dev \
+        zlib1g-dev \
+        libxml2-dev \
+        libicu-dev &&\
     curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - &&\
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list &&\
     apt-get update && apt-get install -y \
-    nodejs &&\
-    npm i -g gulp &&\
+        nodejs \
+        yarn &&\
+    npm i -g \
+        gulp \
+        bower &&\
     rm -rf /var/lib/apt/lists/*;
 
 # Set timezone
