@@ -27,7 +27,7 @@ RUN rm /etc/localtime &&\
     "date"
 
 # Type docker-php-ext-install to see available extensions
-RUN docker-php-ext-install pdo pdo_mysql curl iconv intl mbstring zip bcmath opcache xml soap
+RUN docker-php-ext-install pdo pdo_mysql curl iconv intl mbstring zip bcmath opcache xml soap gd
 
 # install apcu
 RUN pecl install apcu
