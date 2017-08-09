@@ -1,4 +1,4 @@
-FROM php:7.1.7-fpm
+FROM php:7.1.8-fpm
 
 MAINTAINER Martin Zajic <zajca@zajca.cz>
 
@@ -34,6 +34,12 @@ RUN rm /etc/localtime &&\
 # Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo pdo_mysql curl iconv intl mbstring zip bcmath opcache xml soap
 
+RUN touch /usr/local/etc/php/conf.d/opcache.ini \
+    && echo "opcache.memory_consumption=128;" >> /usr/local/etc/php/conf.d/opcache.ini \
+    && echo "opcache.max_accelerated_files=10000;" >> /usr/local/etc/php/conf.d/opcache.ini \
+    && echo "opcache.max_wasted_percentage=10;" >> /usr/local/etc/php/conf.d/opcache.ini \
+    && echo "opcache.validate_timestamps=0;" >> /usr/local/etc/php/conf.d/opcache.ini
+    
 # install apcu
 RUN pecl install apcu
 RUN docker-php-ext-enable apcu
