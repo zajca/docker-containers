@@ -12,12 +12,15 @@ RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng12-dev \
+	zsh \
         libicu-dev &&\
 	docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ &&\
 	docker-php-ext-install -j$(nproc) gd &&\
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &&\
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list &&\
+    curl -sL https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | zsh - && \
+    chsh -s /bin/zsh && \
     apt-get update && apt-get install --quiet --yes --force-yes \
         nodejs \
         yarn &&\
@@ -25,6 +28,9 @@ RUN apt-get update && apt-get install -y \
         gulp \
         bower &&\
     rm -rf /var/lib/apt/lists/*;
+
+#configure zsh
+ADD .zshrc /root/.zshrc
 
 # Set timezone
 RUN rm /etc/localtime &&\
