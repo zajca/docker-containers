@@ -19,8 +19,8 @@ RUN apt-get update && apt-get install -y \
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &&\
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list &&\
-    curl -sL https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | zsh - && \
-    chsh -s /bin/zsh && \
+    export TERM=xterm && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" || true &&\
+    chsh -s /bin/zsh &&\
     apt-get update && apt-get install --quiet --yes --force-yes \
         nodejs \
         yarn &&\
