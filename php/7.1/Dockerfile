@@ -1,4 +1,4 @@
-FROM php:7.1.14-fpm
+FROM php:7.1.15-fpm
 
 MAINTAINER Martin Zajic <zajca@zajca.cz>
 
