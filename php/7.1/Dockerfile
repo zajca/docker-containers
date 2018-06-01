@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
         libxml2-dev \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
-        libpng12-dev \
+        libpng-dev \
 	zsh \
         libicu-dev &&\
 	docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ &&\
@@ -20,7 +20,6 @@ RUN apt-get update && apt-get install -y \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &&\
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list &&\
     export TERM=xterm && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" || true &&\
-    chsh -s /bin/zsh &&\
     apt-get update && apt-get install --quiet --yes --force-yes \
         nodejs \
         yarn &&\
@@ -36,6 +35,8 @@ ADD .zshrc /root/.zshrc
 RUN rm /etc/localtime &&\
     ln -s /usr/share/zoneinfo/Europe/Prague /etc/localtime &&\
     "date"
+#set zsh as default shell
+RUN chsh -s /bin/zsh
 
 # Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo pdo_mysql curl iconv intl mbstring zip bcmath xml soap
