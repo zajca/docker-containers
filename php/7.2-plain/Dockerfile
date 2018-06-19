@@ -5,6 +5,7 @@ MAINTAINER Martin Zajic <zajca@zajca.cz>
 RUN apt-get update && apt-get install -y \
         unzip \
         curl \
+        ca-certificates \
         libcurl4-openssl-dev \
         zlib1g-dev \
         libxml2-dev \
