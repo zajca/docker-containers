@@ -1,4 +1,4 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:6.2.3
+FROM docker.elastic.co/elasticsearch/elasticsearch:6.5.4
 ADD config /usr/share/elasticsearch/config/
 RUN set -x && /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-icu
 USER root
